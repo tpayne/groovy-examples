@@ -53,6 +53,7 @@ class AWSMetaDump {
         return (pretty) ? builder.toPrettyString() : builder.toString()
     }
 
+    // Main routine
     static void main(String[] args) { 
         def uri = urlString
 
@@ -60,7 +61,10 @@ class AWSMetaDump {
             uri = args[0]
         }
         
+        // Get the AWS metadata in collasped form...
         def output = scanAWSInstanceData(uri)
+        
+        // Print the data out in JSON formats...
         println "RAW JSON -> " + convertListToJSON(output)
         println "PRETTY JSON -> " + convertListToJSON(output,true)
     }
