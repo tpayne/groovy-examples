@@ -44,24 +44,26 @@ class AWSMetaDump {
 		return uriMap
     }
 
-	//
-	// Pass the structure to Groovy JSON builder to convert to JSON
-	//
+    //
+    // Pass the structure to Groovy JSON builder to convert to JSON
+    //
     static String convertListToJSON(def conv, def pretty=false) {
         def builder = new JsonBuilder(conv)
         return (pretty) ? builder.toPrettyString() : builder.toString()
     }
 
-	static void main(String[] args) { 
+    //
+    // Main
+    //
+    static void main(String[] args) { 
 		def uri = urlString
 
 		if (args.size()>0) {
 			uri = args[0]
 		}
-		
+
 		def output = scanAWSInstanceData(uri)
 		println "RAW JSON -> " + convertListToJSON(output)
 		println "PRETTY JSON -> " + convertListToJSON(output,true)
-
-	}
+    }
 }
