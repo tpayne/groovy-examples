@@ -12,7 +12,6 @@ class AWSMetaDump {
     // Read the data from the URI specified
     //
     static def readURI(def uri) {
-        def inUri = new URI(uri.toString())
         def outTxt
 
         try {
