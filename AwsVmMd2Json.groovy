@@ -5,6 +5,7 @@ import groovy.json.*
 import groovy.xml.*
 
 class AWSMetaDump {
+    // Metadata URL
 	static def urlString = "http://169.254.169.254/latest/meta-data/"
 
 	//
