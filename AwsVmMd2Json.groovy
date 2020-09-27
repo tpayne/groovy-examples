@@ -5,7 +5,7 @@ import groovy.json.*
 import groovy.xml.*
 
 class AWSMetaDump {
-    // AWS metadata URI
+    // AWS metadata URI...
     static def urlString = "http://169.254.169.254/latest/meta-data/"
 
     //
