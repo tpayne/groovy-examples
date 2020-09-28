@@ -18,6 +18,12 @@ class JsonMapper {
         map.findResult { k, v -> v instanceof Map ? recurseFind(v, key) : null }
     }
 
+    // Pass the structure to Groovy JSON builder to convert to JSON
+    static String convertListToJSON(def conv, def pretty=false) {
+        def builder = new JsonBuilder(conv)
+        return (pretty) ? builder.toPrettyString() : builder.toString()
+    }
+
     // Main routine
     static void main(String[] args) { 
         def keyTxt
@@ -56,7 +62,7 @@ class JsonMapper {
         if (mm==null) {
             println "No match found"
         } else {
-            println "Result='" + mm + "'"
+            println "Result='" + convertListToJSON(mm,true) + "'"
         }
     }
 }
