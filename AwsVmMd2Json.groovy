@@ -72,6 +72,7 @@ class AWSMetaDump {
                 if (args[n].equals("--url")) {
                     uri = args[n+1]
                 } else if (args[n].equals("--query-key")) {
+                    // Query matching will match full composite keys or single existing keys...
                     queryStr = args[n+1]
                 }
             }
