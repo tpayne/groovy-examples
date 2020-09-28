@@ -14,8 +14,12 @@ class JsonMapper {
 
     // Recurse map to find value
     static def recurseFind(def map, def key) {
-        if (map.containsKey(key)) return map[key]
-        map.findResult { k, v -> v instanceof Map ? recurseFind(v, key) : null }
+        if (map != null) {
+            if (map.containsKey(key)) return map[key]
+            map.findResult { k, v -> v instanceof Map ? recurseFind(v, key) : null }
+        } else {
+            return null
+        }
     }
 
     // Pass the structure to Groovy JSON builder to convert to JSON
