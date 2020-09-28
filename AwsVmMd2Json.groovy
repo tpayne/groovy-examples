@@ -68,13 +68,13 @@ class AWSMetaDump {
         def queryStr = null
 
         if (args.size()>0) {
-        	for(int n=0; n<args.size(); n++) {
-        		if (args[n].equals("--url")) {
-					uri = args[n+1]
-				} else if (args[n].equals("--query-key")) {
-					queryStr = args[n+1]
-				}
-        	}
+            for(int n=0; n<args.size(); n++) {
+                if (args[n].equals("--url")) {
+                    uri = args[n+1]
+                } else if (args[n].equals("--query-key")) {
+                    queryStr = args[n+1]
+                }
+            }
         }
         
         // Get the AWS metadata in collasped form...
