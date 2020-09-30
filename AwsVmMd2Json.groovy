@@ -7,7 +7,10 @@ import groovy.xml.*
 class AWSMetaDump {
     // AWS metadata URI...
     static def urlString = "http://169.254.169.254/latest/meta-data/"
-
+    
+    // GCP metadata URI...
+    static def uriGCPString = "http://metadata.google.internal/computeMetadata/v1/"
+        
     //
     // Read the data from the URI specified
     //
@@ -29,6 +32,10 @@ class AWSMetaDump {
         def uriTxt = readURI(uri)
         def uriMap = [:]
 
+        if (uriTxt == null) {
+            return null
+        }
+        
         def tokens = uriTxt.tokenize(' ')
         tokens.each{ token ->
             if (token[token.length()-1] == '/') {
