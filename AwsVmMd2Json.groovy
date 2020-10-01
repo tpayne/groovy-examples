@@ -16,7 +16,7 @@ class AWSMetaDump {
         def outTxt 
 
         try {
-                outTxt = new URL(uri.toString()).getText()
+            outTxt = new URL(uri.toString()).getText()
         } catch(Exception e) {
             return false
         }
