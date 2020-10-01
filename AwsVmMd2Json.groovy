@@ -10,7 +10,19 @@ class AWSMetaDump {
     
     // GCP metadata URI...
     static def uriGCPString = "http://metadata.google.internal/computeMetadata/v1/"
-        
+
+    // Test URL
+    static def testURL(def uri) {
+        def outTxt 
+
+        try {
+                outTxt = new URL(uri.toString()).getText()
+        } catch(Exception e) {
+            return false
+        }
+        return true
+    } 
+
     //
     // Read the data from the URI specified
     //
@@ -71,7 +83,7 @@ class AWSMetaDump {
 
     // Main routine
     static void main(String[] args) { 
-        def uri = urlString
+        def uri = null
         def queryStr = null
 
         if (args.size()>0) {
@@ -85,7 +97,25 @@ class AWSMetaDump {
             }
         }
         
+        if (uri != null) {
+            if (!testURL(uri)) {
+                System.err.println("Error: The URI you specified does not exist")
+                System.exit(1)
+            }
+        } else {
+            // Test if GCP or AWS...
+            if (testURL(urlString)) {
+                uri = urlString
+            } else if (testURL(uriGCPString)) {
+                uri = uriGCPString
+            } else {
+                System.err.println("Error: This platform is not supported")
+                System.exit(1)                
+            }
+        }
+
         // Get the AWS metadata in collasped form...
+        println "Scanning data from "+uri+"..."
         def output = scanAWSInstanceData(uri)
 
         if (queryStr!=null) {
@@ -107,5 +137,7 @@ class AWSMetaDump {
         } else {
             println "No match found"
         }
+        
+        System.exit(0)
     }
 }
