@@ -55,9 +55,15 @@ class AWSMetaDump {
                 // scanned as well...
                 def key = token[0..token.length()-2]
                 uriMap[key] = scanAWSInstanceData(uri + token)
+                if (uriMap[key] == null) {
+                    uriMap[key] = ""
+                }
             } else {
                 // No sub-keys, just get the value...
                 uriMap[token] = readURI(uri + token)
+                if (uriMap[token] == null) {
+                    uriMap[token] = ""
+                }
             }
         }
         return uriMap
