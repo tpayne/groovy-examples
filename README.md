@@ -15,6 +15,7 @@ References
 ----------
 - http://www.groovy-lang.org
 - https://www.jenkins.io/doc/book/pipeline/syntax/
+- https://github.com/tpayne/lang-examples/blob/master/php/parsejson.php
 
 
 
